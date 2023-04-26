@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: files
-    - uses: jitterbit/get-changed-files@v1
+      uses: jitterbit/get-changed-files@v1
       with:
         format: 'csv'
     - run: |
