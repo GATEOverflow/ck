@@ -14,12 +14,10 @@ jobs:
   doreadme:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: (CI) Dependencies update check
+    - name: get changed files
+        id: getfile
+        run: |
+          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-status -r ${{ github.sha }} | xargs)"
+    - name: echo output
       run: |
-        files=`git diff-tree --no-commit-id --name-status -r $(git rev-parse --verify HEAD)`
-        git diff-tree --no-commit-id --name-status -r $(git rev-parse --verify HEAD)
-        echo "$files"
-        echo "Hi"
+        echo ${{ steps.getfile.outputs.files }}
