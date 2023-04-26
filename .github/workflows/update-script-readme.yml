@@ -19,4 +19,5 @@ jobs:
         fetch-depth: 2
     - name: (CI) Dependencies update check
       run: |
-        git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+        files=`git diff-tree --no-commit-id --name-only -r ${{ github.sha }}`
+        echo $files
