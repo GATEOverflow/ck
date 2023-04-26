@@ -19,7 +19,7 @@ jobs:
     - name: get changed files
       id: getfile
       run: |
-        echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | xargs)"
+        echo "::set-output name=files::$(git diff --name-only ${{ github.event.base.sha }} ${{ github.event.head.sha }} | xargs)"
     - name: echo output
       run: |
         for file in ${{ steps.getfile.outputs.files }}; do
