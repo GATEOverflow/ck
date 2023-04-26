@@ -1,0 +1,22 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: CM(CK2) script automation features test
+
+on:
+  pull_request:
+    branches: [ "master", "dev" ]
+    paths:
+      - '.github/workflows/update-script-readmes.yml'
+      - '!cm-mlops/script/**.md'
+      - 'cm-mlops/script/**'
+
+jobs:
+  uses: jitterbit/get-changed-files@v1
+  with:
+    format: 'csv'
+- run: |
+    mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+    for added_modified_file in "${added_modified_files[@]}"; do
+      echo "Do something with this ${added_modified_file}."
+    done
