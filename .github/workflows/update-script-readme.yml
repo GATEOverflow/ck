@@ -6,9 +6,7 @@ on:
   pull_request:
     branches: [ "master", "dev" ]
     paths:
-      - '.github/workflows/update-script-readme.yml'
-      - '!cm-mlops/script/**.md'
-      - 'cm-mlops/script/**'
+      - 'cm-mlops/script/**_cm.json'
 
 jobs:
   doreadme:
@@ -24,4 +22,6 @@ jobs:
         echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | xargs)"
     - name: echo output
       run: |
-        echo ${{ steps.getfile.outputs.files }}
+        for file in ${{ steps.getfile.outputs.files }}; do
+          echo $file
+        done
