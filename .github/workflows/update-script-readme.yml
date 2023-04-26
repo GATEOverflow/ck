@@ -13,7 +13,6 @@ on:
 jobs:
   doreadme:
     runs-on: ubuntu-latest
-#    steps:
     - id: files
       uses: jitterbit/get-changed-files@v1
       with:
