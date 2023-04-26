@@ -19,7 +19,7 @@ jobs:
         fetch-depth: 0
     - name: (CI) Dependencies update check
       run: |
-        files=`git diff-tree --no-commit-id --name-only -r ${{ github.workflow_sha }}`
-        git diff-tree --no-commit-id --name-only -r f6bd3063a80ac4fb531c242f8949224eaca33e19
-        echo $files
+        files=`git diff-tree --no-commit-id --name-status -r $(git rev-parse --verify HEAD)`
+        git diff-tree --no-commit-id --name-status -r $(git rev-parse --verify HEAD)
+        echo "$files"
         echo "Hi"
