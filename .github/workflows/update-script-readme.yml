@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master", "dev" ]
     paths:
-      - '.github/workflows/update-script-readmes.yml'
+      - '.github/workflows/update-script-readme.yml'
       - '!cm-mlops/script/**.md'
       - 'cm-mlops/script/**'
 
