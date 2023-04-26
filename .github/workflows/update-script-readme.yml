@@ -13,10 +13,11 @@ on:
 jobs:
   doreadme:
     runs-on: ubuntu-latest
-    uses: actions/checkout@v2
-    with:
-      fetch-depth: 0
     steps:
+    - name 'Checkout'
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: get changed files
       id: getfile
       run: |
