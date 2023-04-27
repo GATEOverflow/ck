@@ -41,9 +41,10 @@ jobs:
         echo $FOLDER
         cd $FOLDER
         echo "Po"
-        git config --global user.name "{{ github.repository_owner }}"
-        git config --global user.email "{{ github.repository_owner }}@users.noreply.github.com"
+        USER=${{ github.repository_owner }}
+        EMAIL=${{ github.repository_owner }}@users.noreply.github.com
+        git config --global user.name "$USER""
+        git config --global user.email "$EMAIL"
         git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/${{ github.repository }}
         git add *.md
-        git commit -a -m "Updated docs"
-        git push
+        git diff-index --quiet HEAD || (git commit -am "Updated docs" && git push)
