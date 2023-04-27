@@ -34,7 +34,7 @@ jobs:
         echo $REPO
         CM_REPO=${REPO/\//@}
         echo $CM_REPO
-        cd `cm find repo ${CM_REPO}`
+        cd `cm find repo ${CM_REPO} | cut -d' ' -f3`
         git config --global user.name '{{ github.repository_owner }}'
         git config --global user.email '{{ github.repository_owner }}@users.noreply.github.com'
         #git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
