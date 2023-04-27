@@ -28,4 +28,5 @@ jobs:
           echo $file
         done
         git checkout ${{ github.event.pull_request.head.ref }}
+        python3 -m pip install cmind
         python3 tests/script/process_readme.py ${{ steps.getfile.outputs.files }}
