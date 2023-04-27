@@ -20,7 +20,6 @@ jobs:
       id: getfile
       run: |
         git checkout ${{ github.base_ref }}
-        #echo "::set-output name=files::$(git diff --name-only ${{ github.event.after }} | xargs)"
         echo "files=$(git diff --name-only ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
     - name: echo output
       run: |
@@ -28,3 +27,4 @@ jobs:
         for file in ${{ steps.getfile.outputs.files }}; do
           echo $file
         done
+        python3 tests/script/process_readme.py ${{ steps.getfile.outputs.files }
