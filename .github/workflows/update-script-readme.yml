@@ -19,7 +19,7 @@ jobs:
     - name: Get changed files
       id: getfile
       run: |
-        echo "files=$(git diff --name-only ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+        echo "files=$(git diff --name-only ${{ github.event.before }} | xargs)" >> $GITHUB_OUTPUT
     - name: echo output
       run: |
         echo ${{ steps.getfile.outputs.files }}
