@@ -27,4 +27,5 @@ jobs:
         for file in ${{ steps.getfile.outputs.files }}; do
           echo $file
         done
+        git checkout ${{ github.event.pll_request.head.ref }}
         python3 tests/script/process_readme.py ${{ steps.getfile.outputs.files }}
