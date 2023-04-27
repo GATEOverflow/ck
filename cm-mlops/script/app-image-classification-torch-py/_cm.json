@@ -74,6 +74,7 @@
   ],
   "variations": {
     "cuda": {
+      "group": "device",
       "env": {
          "USE_CUDA": "yes"
       },
