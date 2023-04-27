@@ -1,0 +1,30 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+
+name: CM(CK2) script automation readme update
+
+on:
+  pull_request:
+    branches: [ "master", "dev" ]
+    paths:
+      - 'cm-mlops/script/**_cm.json'
+
+jobs:
+  doreadme:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: get changed files
+      id: getfile
+      run: |
+        git checkout ${{ github.base_ref }}
+        echo "files=$(git diff --name-only ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+    - name: echo output
+      run: |
+        echo ${{ steps.getfile.outputs.files }}
+        for file in ${{ steps.getfile.outputs.files }}; do
+          echo $file
+        done
+        python3 ../tests/script/process_readme.py ${{ steps.getfile.outputs.files }}
