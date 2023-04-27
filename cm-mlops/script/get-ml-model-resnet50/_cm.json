@@ -24,6 +24,7 @@
     "ml-model",
     "resnet50",
     "ml-model-resnet50",
+    "image",
     "image-classification"
   ],
   "uid": "56203e4e998b4bc0",
