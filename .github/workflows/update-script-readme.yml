@@ -39,6 +39,7 @@ jobs:
         FOLDER=`cm find repo ${CM_REPO} | cut -d' ' -f3`
         echo $FOLDER
         cd $FOLDER
+        echo "Po"
         git config --global user.name '{{ github.repository_owner }}'
         git config --global user.email '{{ github.repository_owner }}@users.noreply.github.com'
         #git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
