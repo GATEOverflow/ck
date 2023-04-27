@@ -20,7 +20,8 @@ jobs:
       id: getfile
       run: |
         git checkout ${{ github.base_ref }}
-        echo "::set-output name=files::$(git diff --name-only ${{ github.event.after }} | xargs)"
+        #echo "::set-output name=files::$(git diff --name-only ${{ github.event.after }} | xargs)"
+        #echo "files=$(git diff --name-only ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
     - name: echo output
       run: |
         echo ${{ steps.getfile.outputs.files }}
