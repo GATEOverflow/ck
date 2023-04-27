@@ -16,5 +16,6 @@ for file in files:
   tags = data['tags']
   tag_string = ",".join(tags)
   print(uid)
-  r = cm.access({'action':'doc', 'automation':'script', 'tags': tag_string, 'quiet': 'yes'})
+  print(tag_string)
+  r = cm.access({'action':'doc', 'automation':'script', 'artifact': uid, 'quiet': 'yes'})
   checks.check_return(r)
