@@ -3,9 +3,7 @@
 name: CM(CK2) script automation readme update
 
 on:
-  pull_request:
-    types:
-    - closed
+  push:
     branches: [ "master", "dev" ]
     paths:
       - 'cm-mlops/script/**_cm.json'
@@ -13,7 +11,6 @@ on:
 jobs:
   doreadme:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
     - name: 'Checkout'
       uses: actions/checkout@v3
@@ -22,7 +19,6 @@ jobs:
     - name: Get changed files
       id: getfile
       run: |
-        git checkout ${{ github.base_ref }}
         echo "files=$(git diff --name-only ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
     - name: echo output
       run: |
@@ -30,17 +26,16 @@ jobs:
         for file in ${{ steps.getfile.outputs.files }}; do
           echo $file
         done
-        git checkout ${{ github.event.pull_request.head.ref }}
         python3 -m pip install cmind
-        cm pull repo --url=${{ github.event.pull_request.head.repo.html_url }} --checkout=${{ github.event.pull_request.head.ref }}
+        cm pull repo --url=${{ github.repositoryUrl }} --checkout=${{ github.ref }}
         python3 tests/script/process_readme.py ${{ steps.getfile.outputs.files }}
-        REPO=${{ github.event.pull_request.head.repo }}
+        REPO=${{ github.repository }}
         echo $REPO
         CM_REPO=${REPO/\//@}
         echo $CM_REPO
         cd `cm find repo ${CM_REPO}`
-        git config --global user.name 'Admin'
-        git config --global user.email 'admin@users.noreply.github.com'
+        git config --global user.name '{{ github.repository_owner }}'
+        git config --global user.email '{{ github.repository_owner }}@users.noreply.github.com'
         #git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git add *.md
         git commit -a -m "Updated docs"
