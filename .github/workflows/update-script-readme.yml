@@ -34,6 +34,8 @@ jobs:
         echo $REPO
         CM_REPO=${REPO/\//@}
         echo $CM_REPO
+        FOL=`cm find repo ${CM_REPO}`
+        echo $FOL
         FOLDER=`cm find repo ${CM_REPO} | cut -d' ' -f3`
         echo $FOLDER
         cd $FOLDER
