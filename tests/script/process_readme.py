@@ -13,5 +13,6 @@ for file in files:
   f = open(file)
   data = json.load(f)
   automation_uid = data['automation_uid']
+  print(automation_uid)
   r = cm.access({'action':'doc', 'automation':f'script,{automation_uid}', 'quiet': 'yes'})
   checks.check_return(r)
