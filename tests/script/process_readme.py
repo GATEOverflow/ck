@@ -13,6 +13,8 @@ for file in files:
   f = open(file)
   data = json.load(f)
   uid = data['uid']
+  tags = data['tags']
+  tag_string = ",".join(tags)
   print(uid)
-  r = cm.access({'action':'doc', 'automation':'script', 'uid': uid, 'quiet': 'yes'})
+  r = cm.access({'action':'doc', 'automation':'script', 'tags': tag_string, 'quiet': 'yes'})
   checks.check_return(r)
