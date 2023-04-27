@@ -12,7 +12,7 @@ for file in files:
   script_path = os.path.dirname(file)
   f = open(file)
   data = json.load(f)
-  automation_uid = data['automation_uid']
-  print(automation_uid)
-  r = cm.access({'action':'doc', 'automation':f'script,{automation_uid}', 'quiet': 'yes'})
+  uid = data['uid']
+  print(uid)
+  r = cm.access({'action':'doc', 'automation':'script', 'uid': uid, 'quiet': 'yes'})
   checks.check_return(r)
