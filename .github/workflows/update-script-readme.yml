@@ -31,7 +31,7 @@ jobs:
         python3 -m pip install cmind
         cm pull repo --url=${{ github.event.pull_request.head.repo.html_url }} --checkout=${{ github.event.pull_request.head.ref }}
         python3 tests/script/process_readme.py ${{ steps.getfile.outputs.files }}
-        REPO=${{ github.repository }}
+        REPO=${{ github.event.pull_request.head.repo }}
         echo $REPO
         CM_REPO=${REPO/\//@}
         echo $CM_REPO
