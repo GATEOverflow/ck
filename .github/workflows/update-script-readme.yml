@@ -27,7 +27,8 @@ jobs:
           echo $file
         done
         python3 -m pip install cmind
-        cm pull repo --url=https://github.com/${{ github.repository }} --checkout=${{ github.ref }}
+        cm pull repo --url=https://github.com/${{ github.repository }} 
+        # --checkout=${{ github.ref }}
         python3 tests/script/process_readme.py ${{ steps.getfile.outputs.files }}
         REPO=${{ github.repository }}
         echo $REPO
