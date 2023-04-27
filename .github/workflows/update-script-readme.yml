@@ -37,6 +37,7 @@ jobs:
         FOL=`cm find repo ${CM_REPO}`
         echo $FOL
         FOLDER=`cm find repo ${CM_REPO} | cut -d' ' -f3`
+        FOLDER=`cm find repo mlcommons@ck | cut -d' ' -f3`
         echo $FOLDER
         cd $FOLDER
         echo "Po"
