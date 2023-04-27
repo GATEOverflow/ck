@@ -79,6 +79,9 @@
       },
       "deps": [
         {
+          "names": [
+            "cuda"
+          ],
           "tags": "get,cuda"
         }
       ]
